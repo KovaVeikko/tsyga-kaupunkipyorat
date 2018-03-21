@@ -1,10 +1,12 @@
 import {createStore, applyMiddleware} from 'redux';
 import {createLogger} from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import {navigationReduxMiddleware} from "../modules/navigator/NavigatorHelpers";
 import reducer from './reducer';
 
 
 let middleWares = [
+  thunkMiddleware,
   navigationReduxMiddleware,
 ];
 

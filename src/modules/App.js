@@ -1,14 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
   View,
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import NavigatorContainer from './modules/navigator/NavigatorContainer';
-import {DARK_PRIMARY_COLOR} from "./styles/colors"
+import NavigatorContainer from './navigator/NavigatorContainer';
+import {DARK_PRIMARY_COLOR} from "../styles/colors"
+import {fetchStations} from "./AppState"
 
 class App extends React.Component {
+
+  componentWillMount() {
+    this.props.dispatch(fetchStations());
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -26,4 +33,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(App);
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  app: PropTypes.object.isRequired,
+}
+
+export default connect(state => ({
+  app: state.app,
+}))(App);
