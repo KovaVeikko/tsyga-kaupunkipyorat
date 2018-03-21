@@ -5,7 +5,8 @@ const initialState = {
     data: [],
     loading: false,
     error: null,
-  }
+    favorites: [],
+  },
 }
 
 const STATIONS_REQUEST = 'STATIONS_REQUEST';
@@ -23,6 +24,12 @@ const STATIONS_RESPONSE_ERROR = 'STATIONS_RESPONSE_ERROR';
 const stationsResponseError = ({error}) => ({
   type: STATIONS_RESPONSE_ERROR,
   error,
+});
+
+const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+export const toggleFavorite = ({stationId}) => ({
+  type: TOGGLE_FAVORITE,
+  stationId,
 });
 
 export const fetchStations = () => async dispatch => {
@@ -62,6 +69,16 @@ export const AppReducer = (state = initialState, action) => {
           loading: false,
           error: action.error,
         },
+      }
+    case TOGGLE_FAVORITE:
+      return {
+        ...state,
+        stations: {
+          ...state.stations,
+          favorites: state.stations.favorites.includes(action.stationId)
+            ? state.stations.favorites.filter(id => id !== action.stationId)
+            : [...state.stations.favorites, action.stationId],
+        }
       }
     default:
       return state;
