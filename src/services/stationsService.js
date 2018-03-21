@@ -11,6 +11,22 @@ const options = {
 }
 
 
-export const fetchStationsData = () => {
-  return fetch(url, options);
-}
+export const fetchStationsData = () => new Promise((resolve, reject) => {
+  return fetch(url, options)
+    .then(response => {
+      if (response.status !== 200) {
+        reject(response.statusText)
+      } else {
+      response.json()
+        .then(json => {
+          resolve(json.data.bikeRentalStations)
+        })
+        .catch(error => {
+          reject(error)
+        })
+      }
+    })
+  .catch(error => {
+    reject(error)
+  })
+})

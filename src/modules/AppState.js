@@ -2,7 +2,7 @@ import {fetchStationsData} from "../services/stationsService"
 
 const initialState = {
   stations: {
-    data: null,
+    data: [],
     loading: false,
     error: null,
   }
@@ -25,25 +25,14 @@ const stationsResponseError = ({error}) => ({
   error,
 });
 
-export const fetchStations = () => dispatch => {
+export const fetchStations = () => async dispatch => {
   dispatch(stationsRequest());
-  fetchStationsData()
-    .then(response => {
-      if (response.status !== 200) {
-        return dispatch(stationsResponseError({error: response.statusText}))
-      } else {
-        response.json()
-          .then(json => {
-          return dispatch(stationsResponseSuccess({payload: json.data}))
-        })
-          .catch(error => {
-            return dispatch(stationsResponseError({error}))
-        })
-      }
-    })
-    .catch(error => {
-      return dispatch(stationsResponseError({error}))
-    })
+  try {
+    const stationsData = await fetchStationsData();
+    return dispatch(stationsResponseSuccess({payload: stationsData}))
+  } catch(err) {
+    return dispatch(stationsResponseError({error: err}))
+  }
 }
 
 export const AppReducer = (state = initialState, action) => {
