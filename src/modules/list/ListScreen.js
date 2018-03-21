@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FlatList, Text} from 'react-native';
+import ListItem from "./ListItem"
+import ListItemSeparator from "./ListItemSeparator"
 
 const ListScreen = ({stations}) => {
   const stationsList = stations.data;
   const renderItem = ({item}) => (
-    <Text>{item.name}</Text>
+    <ListItem item={item}/>
   );
   const keyExtractor = item => item.stationId;
   return (
@@ -14,6 +16,7 @@ const ListScreen = ({stations}) => {
       data={stationsList}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
+      ItemSeparatorComponent={ListItemSeparator}
     />
   )
 };
