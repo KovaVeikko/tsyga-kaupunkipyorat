@@ -1,4 +1,5 @@
 import {fetchStationsData} from "../services/stationsService"
+import {getPosition} from "../services/locationService"
 
 const initialState = {
   stations: {
@@ -7,6 +8,11 @@ const initialState = {
     error: null,
     favorites: [],
   },
+  location: {
+    position: null,
+    loading: false,
+    error: null,
+  }
 }
 
 const STATIONS_REQUEST = 'STATIONS_REQUEST';
@@ -32,6 +38,23 @@ export const toggleFavorite = ({stationId}) => ({
   stationId,
 });
 
+const LOCATION_REQUEST = 'LOCATION_REQUEST';
+const locationRequest = () => ({
+  type: LOCATION_REQUEST,
+});
+
+const LOCATION_RESPONSE_SUCCESS = 'LOCATION_RESPONSE_SUCCESS';
+const locationResponseSuccess = ({payload}) => ({
+  type: LOCATION_RESPONSE_SUCCESS,
+  payload,
+});
+
+const LOCATION_RESPONSE_ERROR = 'LOCATION_RESPONSE_ERROR';
+const locationResponseError = ({error}) => ({
+  type: LOCATION_RESPONSE_ERROR,
+  error,
+});
+
 export const fetchStations = () => async dispatch => {
   dispatch(stationsRequest());
   try {
@@ -39,6 +62,16 @@ export const fetchStations = () => async dispatch => {
     return dispatch(stationsResponseSuccess({payload: stationsData}))
   } catch(err) {
     return dispatch(stationsResponseError({error: err}))
+  }
+}
+
+export const getLocation = () => async dispatch => {
+  dispatch(locationRequest());
+  try {
+    const position = await getPosition();
+    return dispatch(locationResponseSuccess({payload: position}));
+  } catch (err) {
+    return dispatch(locationResponseError({error: err}));
   }
 }
 
@@ -78,6 +111,32 @@ export const AppReducer = (state = initialState, action) => {
           favorites: state.stations.favorites.includes(action.stationId)
             ? state.stations.favorites.filter(id => id !== action.stationId)
             : [...state.stations.favorites, action.stationId],
+        }
+      }
+    case LOCATION_REQUEST:
+      return {
+        ...state,
+        location: {
+          ...state.location,
+          loading: true,
+        }
+      }
+    case LOCATION_RESPONSE_SUCCESS:
+      return {
+        ...state,
+        location: {
+          ...state.location,
+          loading: false,
+          position: action.payload,
+        }
+      }
+    case LOCATION_RESPONSE_ERROR:
+      return {
+        ...state,
+        location: {
+          ...state.location,
+          loading: false,
+          error: action.error,
         }
       }
     default:

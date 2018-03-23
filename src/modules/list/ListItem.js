@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {DEFAULT_PRIMARY_COLOR} from "../../styles/colors"
 
-const ListItem = ({item, handlePress, isFavorite}) => {
+const ListItem = ({item, handlePress, isFavorite, distance}) => {
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={styles.container}>
@@ -13,7 +13,7 @@ const ListItem = ({item, handlePress, isFavorite}) => {
         </View>
         <View style={styles.right}>
           <View style={styles.top}>
-            <Text>1.01 km</Text>
+            <Text>{distance} km</Text>
           </View>
           <View style={styles.bottom}>
             <View style={styles.name}>
@@ -33,6 +33,7 @@ ListItem.propTypes = {
   item: PropTypes.object.isRequired,
   handlePress: PropTypes.func.isRequired,
   isFavorite: PropTypes.bool.isRequired,
+  distance: PropTypes.number.isRequired,
 }
 
 const styles = StyleSheet.create({

@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 import NavigatorContainer from './navigator/NavigatorContainer';
 import {DARK_PRIMARY_COLOR} from "../styles/colors"
-import {fetchStations} from "./AppState"
+import {fetchStations, getLocation} from "./AppState"
 
 class App extends React.Component {
 
   componentWillMount() {
+    this.props.dispatch(getLocation());
     this.props.dispatch(fetchStations());
   }
 
