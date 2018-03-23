@@ -6,22 +6,36 @@ import ListItem from "./ListItem"
 import ListItemSeparator from "./ListItemSeparator"
 import {toggleFavorite} from "../AppState"
 
-class ListScreen extends React.Component {
+const isFavorite = (favorites, stationId) => favorites.includes(stationId);
+
+const sortByFavorite = (data, favorites) => {
+  return data.sort((left, right) => {
+    if (isFavorite(favorites, left.stationId) > isFavorite(favorites, right.stationId)) {
+      return -1;
+    }
+    if (isFavorite(favorites, left.stationId) < isFavorite(favorites, right.stationId)) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
+class ListScreen extends React.PureComponent {
   render() {
-    const {dispatch, stations} = this.props;
-    const stationsList = stations.data;
+    const {dispatch, stations: {data, favorites}} = this.props;
+    const sortedStations = sortByFavorite(data, favorites);
     const renderItem = ({item}) => (
       <ListItem
         item={item}
         handlePress={() => dispatch(toggleFavorite({stationId: item.stationId}))}
-        isFavorite={stations.favorites.includes(item.stationId)}
+        isFavorite={isFavorite(favorites, item.stationId)}
       />
     );
     const keyExtractor = item => item.stationId;
     return (
       <FlatList
-        data={stationsList}
-        extraData={stations.favorites}
+        data={sortedStations}
+        extraData={favorites}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ItemSeparatorComponent={ListItemSeparator}
