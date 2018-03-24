@@ -9,7 +9,12 @@ const initialState = {
     favorites: [],
   },
   location: {
-    position: null,
+    position: {
+      coords: {
+        latitude: 0,
+        longitude: 0,
+      }
+    },
     loading: false,
     error: null,
   }

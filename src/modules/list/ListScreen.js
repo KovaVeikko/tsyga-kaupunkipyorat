@@ -13,22 +13,22 @@ const getDistance = (coords, station) => {
   return getDistanceFromLatLonInKm(coords.latitude, coords.longitude, station.lat, station.lon);
 }
 
-const sortedStations = (data, favorites) => {
-  return data.sort((left, right) => {
-    if (isFavorite(favorites, left.stationId) > isFavorite(favorites, right.stationId)) {
-      return -1;
-    }
-    if (isFavorite(favorites, left.stationId) < isFavorite(favorites, right.stationId)) {
-      return 1;
-    }
-    return 0;
+const sortByDistance = (coords, stationsList) => {
+  return stationsList.sort((left, right) => {
+    return getDistance(coords, left) > getDistance(coords, right) ? 1 : -1;
   });
+}
+
+const sortedStations = (coords, stationsList, favorites) => {
+  const favoriteStations = sortByDistance(coords, stationsList.filter(s => isFavorite(favorites, s)));
+  const otherStations = sortByDistance(coords, stationsList.filter(s => !isFavorite(favorites, s)));
+  return [...favoriteStations, ...otherStations];
 }
 
 class ListScreen extends React.PureComponent {
   render() {
     const {dispatch, stations: {data, favorites}, location: {position}} = this.props;
-    const sorted = sortedStations(data, favorites);
+    const sorted = sortedStations(position.coords, data, favorites);
     const renderItem = ({item}) => (
       <ListItem
         item={item}
@@ -41,7 +41,7 @@ class ListScreen extends React.PureComponent {
     return (
       <FlatList
         data={sorted}
-        extraData={favorites}
+        extraData={[favorites]}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ItemSeparatorComponent={ListItemSeparator}
