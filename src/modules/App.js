@@ -18,7 +18,9 @@ class App extends React.Component {
 
   componentWillMount() {
     getSnapshot().then((snapshot) => {
-      this.props.dispatch(loadSnapshot(snapshot));
+      if (snapshot) {
+        this.props.dispatch(loadSnapshot(snapshot));
+      }
     });
     this.props.dispatch(getLocation());
     this.props.dispatch(fetchStations());
