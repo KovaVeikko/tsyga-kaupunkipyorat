@@ -5,9 +5,10 @@ import {
   View,
   StyleSheet,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import NavigatorContainer from './navigator/NavigatorContainer';
-import {DARK_PRIMARY_COLOR} from '../styles/colors';
+import {DARK_PRIMARY_COLOR, ICON_COLOR} from '../styles/colors';
 import {fetchStations, getLocation} from './AppState';
 import store from '../redux/store';
 import {getSnapshot, saveSnapshot} from "../utils/localStorage";
@@ -30,6 +31,13 @@ class App extends React.Component {
   }
 
   render() {
+    if (!this.props.session.isReady) {
+      return (
+        <View style={{backgroundColor: '#000000', flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <ActivityIndicator color={ICON_COLOR}/>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor={DARK_PRIMARY_COLOR} barStyle='light-content' />
@@ -49,8 +57,10 @@ const styles = StyleSheet.create({
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   app: PropTypes.object.isRequired,
+  session: PropTypes.object.isRequired,
 }
 
 export default connect(state => ({
   app: state.app,
+  session: state.session,
 }))(App);

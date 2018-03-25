@@ -14,6 +14,7 @@ export const SessionReducer = (state = initialState, action) => {
     case LOAD_SNAPSHOT:
       return {
         ...state,
+        isReady: true,
       }
     default:
       return state;
