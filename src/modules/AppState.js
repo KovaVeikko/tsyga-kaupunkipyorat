@@ -11,8 +11,8 @@ const initialState = {
   location: {
     position: {
       coords: {
-        latitude: 0,
-        longitude: 0,
+        latitude: 60.192059,
+        longitude: 24.945831,
       }
     },
     loading: false,

@@ -5,23 +5,11 @@ import {FlatList} from 'react-native';
 import ListItem from "./ListItem"
 import ListItemSeparator from "./ListItemSeparator"
 import {toggleFavorite} from "../AppState"
-import {getDistanceFromLatLonInKm} from "../../utils/locationUtils";
-
-const isFavorite = (favorites, station) => favorites.includes(station.stationId);
-
-const getDistance = (coords, station) => {
-  return getDistanceFromLatLonInKm(coords.latitude, coords.longitude, station.lat, station.lon);
-}
-
-const sortByDistance = (coords, stationsList) => {
-  return stationsList.sort((left, right) => {
-    return getDistance(coords, left) > getDistance(coords, right) ? 1 : -1;
-  });
-}
+import {sortStationsByDistance, isFavorite, getStationDistance} from "../../utils/stationUtils";
 
 const sortedStations = (coords, stationsList, favorites) => {
-  const favoriteStations = sortByDistance(coords, stationsList.filter(s => isFavorite(favorites, s)));
-  const otherStations = sortByDistance(coords, stationsList.filter(s => !isFavorite(favorites, s)));
+  const favoriteStations = sortStationsByDistance(coords, stationsList.filter(s => isFavorite(favorites, s)));
+  const otherStations = sortStationsByDistance(coords, stationsList.filter(s => !isFavorite(favorites, s)));
   return [...favoriteStations, ...otherStations];
 }
 
@@ -34,7 +22,7 @@ class ListScreen extends React.PureComponent {
         item={item}
         handlePress={() => dispatch(toggleFavorite({stationId: item.stationId}))}
         isFavorite={isFavorite(favorites, item)}
-        distance={getDistance(position.coords, item)}
+        distance={getStationDistance(position.coords, item)}
       />
     );
     const keyExtractor = item => item.stationId;

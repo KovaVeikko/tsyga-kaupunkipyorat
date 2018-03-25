@@ -1,41 +1,21 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import MapView from 'react-native-maps/lib/components/MapView';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import MapView from './MapView';
 
-const MapScreen = () => {
+const MapScreen = ({stations, location}) => {
   return (
-    <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        provider={MapView.PROVIDER_GOOGLE}
-        region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
-    </View>
+    <MapView stations={stations} coords={location.position.coords}/>
   )
 };
 
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  }
-});
+MapScreen.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  stations: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+};
 
-export default MapScreen;
+export default connect(state => ({
+  stations: state.app.stations,
+  location: state.app.location,
+}))(MapScreen);
