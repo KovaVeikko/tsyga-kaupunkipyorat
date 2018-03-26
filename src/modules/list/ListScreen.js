@@ -7,16 +7,30 @@ import ListItemSeparator from "./ListItemSeparator"
 import {toggleFavorite} from "../AppState"
 import {sortStationsByDistance, isFavorite, getStationDistance} from "../../utils/stationUtils";
 
-const sortedStations = (coords, stationsList, favorites) => {
+const sortdStations = (coords, stationsList, favorites) => {
   const favoriteStations = sortStationsByDistance(coords, stationsList.filter(s => isFavorite(favorites, s)));
   const otherStations = sortStationsByDistance(coords, stationsList.filter(s => !isFavorite(favorites, s)));
   return [...favoriteStations, ...otherStations];
 }
 
 class ListScreen extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadedStations: 20,
+    }
+  }
+
+  loadMore = () => {
+    if (this.state.loadedStations < this.props.stations.data.length) {
+      this.setState({loadedStations: this.state.loadedStations + 20})
+    }
+  }
+
   render() {
     const {dispatch, stations: {data, favorites}, location: {position}} = this.props;
-    const sorted = sortedStations(position.coords, data, favorites);
+    const sortedStations = sortdStations(position.coords, data, favorites);
+    const visibleStations = sortedStations.slice(0, this.state.loadedStations);
     const renderItem = ({item}) => (
       <ListItem
         item={item}
@@ -28,11 +42,13 @@ class ListScreen extends React.PureComponent {
     const keyExtractor = item => item.stationId;
     return (
       <FlatList
-        data={sorted}
+        data={visibleStations}
         extraData={[favorites]}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ItemSeparatorComponent={ListItemSeparator}
+        onEndReached={this.loadMore}
+        onEndReachedThreshold={0.05}
       />
     )
   }
