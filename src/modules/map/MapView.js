@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
 import GoogleMapsView from 'react-native-maps/lib/components/MapView';
+import MarkerCallout from './MarkerCallout';
 import {getStationStatus, isFavorite, STATION_EMPTY, STATION_FULL, STATION_OK} from "../../utils/stationUtils"
+import {toggleFavorite} from "../AppState"
 
 const EMPTY_PIN = require('../../assets/img/map/rgrey.png');
 const OK_PIN = require('../../assets/img/map/rgreen.png');
@@ -12,7 +14,7 @@ const OK_PIN_S = require('../../assets/img/map/rgreen_s.png');
 const FULL_PIN_S = require('../../assets/img/map/rorange_s.png');
 
 
-const MapView = ({stations, coords}) => {
+const MapView = ({stations, coords, toggleFavorite}) => {
 
   getMapPinImage = (station) => {
     const status = getStationStatus(station);
@@ -69,6 +71,11 @@ const MapView = ({stations, coords}) => {
             title={station.name}
             image={getMapPinImage(station)}
           >
+            <GoogleMapsView.Callout
+              tooltip={true}
+              onPress={() => toggleFavorite(station.stationId)}>
+              <MarkerCallout station={station}/>
+            </GoogleMapsView.Callout>
           </GoogleMapsView.Marker>
         ))}
       </GoogleMapsView>
@@ -79,6 +86,7 @@ const MapView = ({stations, coords}) => {
 MapView.propTypes = {
   stations: PropTypes.object.isRequired,
   coords: PropTypes.object.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

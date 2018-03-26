@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import MapView from './MapView';
+import {toggleFavorite} from '../AppState';
 
-const MapScreen = ({stations, location}) => {
+const MapScreen = ({dispatch, stations, location}) => {
   return (
-    <MapView stations={stations} coords={location.position.coords}/>
+    <MapView
+      stations={stations}
+      coords={location.position.coords}
+      toggleFavorite={(stationId) => dispatch(toggleFavorite({stationId}))}
+    />
   )
 };
 
