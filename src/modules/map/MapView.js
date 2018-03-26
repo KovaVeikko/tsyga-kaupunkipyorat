@@ -47,6 +47,7 @@ const MapView = ({stations, coords, toggleFavorite}) => {
   return (
     <View style={styles.container}>
       <GoogleMapsView
+        ref={node => this.map = node}
         style={styles.map}
         //provider={GoogleMapsView.PROVIDER_GOOGLE} // TODO: initialRegion not working on ios with Google maps
         initialRegion={{
@@ -63,11 +64,12 @@ const MapView = ({stations, coords, toggleFavorite}) => {
         showsTraffic={false}
         showsIndoors={false}
         toolbarEnabled={false}
-        followsUserLocation={true}
         zoomEnabled={true}
+        showsScale={true}
       >
         {stations.data.map(station => (
           <GoogleMapsView.Marker
+            ref={node => this["marker" + station.stationId] = node}
             key={station.stationId}
             coordinate={{latitude: station.lat, longitude: station.lon}}
             title={station.name}
