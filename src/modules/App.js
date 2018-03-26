@@ -35,7 +35,8 @@ class App extends React.Component {
   render() {
     if (!this.props.session.isReady) {
       return (
-        <View style={{backgroundColor: '#000000', flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={styles.loadingScreen}>
+          <StatusBar backgroundColor={DARK_PRIMARY_COLOR} barStyle='light-content' />
           <ActivityIndicator color={ICON_COLOR}/>
         </View>
       )
@@ -53,7 +54,13 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-  }
+  },
+  loadingScreen: {
+    backgroundColor: DARK_PRIMARY_COLOR,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 App.propTypes = {
