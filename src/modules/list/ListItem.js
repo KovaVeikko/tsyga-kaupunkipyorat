@@ -2,30 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {DEFAULT_PRIMARY_COLOR} from "../../styles/colors"
+import {DEFAULT_PRIMARY_COLOR, TEXT_PRIMARY_COLOR, TEXT_SECONDARY_COLOR} from "../../styles/colors"
 
 const ListItem = ({item, handlePress, isFavorite, distance}) => {
   return (
-    <TouchableOpacity onPress={handlePress}>
       <View style={styles.container}>
         <View style={styles.left}>
-          <Icon name={isFavorite ? 'star' : 'star-o'} size={20} color={DEFAULT_PRIMARY_COLOR} />
+          <TouchableOpacity onPress={handlePress}>
+            <Icon name={isFavorite ? 'star' : 'star-o'} size={20} color={DEFAULT_PRIMARY_COLOR} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.middle}>
+          <View style={styles.distanceContainer}>
+            <Text style={styles.distanceText}>{distance} km</Text>
+          </View>
+          <View>
+            <Text style={styles.nameText}>{item.name}</Text>
+          </View>
         </View>
         <View style={styles.right}>
-          <View style={styles.top}>
-            <Text>{distance} km</Text>
-          </View>
-          <View style={styles.bottom}>
-            <View style={styles.name}>
-              <Text>{item.name}</Text>
-            </View>
-            <View style={styles.status}>
-              <Text>{item.bikesAvailable + '/' + (item.bikesAvailable + item.spacesAvailable)}</Text>
-            </View>
-          </View>
+          <Text style={styles.statusText}>{item.bikesAvailable + '/' + (item.bikesAvailable + item.spacesAvailable)}</Text>
         </View>
       </View>
-    </TouchableOpacity>
   )
 };
 
@@ -39,29 +37,35 @@ ListItem.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 23,
+    paddingBottom: 20,
     flexDirection: 'row',
-    padding: 20,
   },
   left: {
     marginRight: 20,
     justifyContent: 'center',
   },
+  middle: {
+    flex: 1,
+    marginRight: 20,
+  },
   right: {
-    flex: 1,
+    justifyContent: 'center',
   },
-  top: {
-    flex: 1,
+  distanceContainer: {
+    position: 'absolute',
+    top: -15,
   },
-  bottom: {
-    flex: 1,
-    flexDirection: 'row',
+  distanceText: {
+    color: TEXT_SECONDARY_COLOR,
   },
-  name: {
-    flex: 1,
+  nameText: {
+    color: TEXT_PRIMARY_COLOR,
+    fontSize: 18,
   },
-  status: {
-
-  }
+  statusText: {
+    fontSize: 18,
+  },
 });
 
 export default ListItem;
