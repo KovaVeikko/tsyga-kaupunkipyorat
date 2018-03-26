@@ -48,12 +48,12 @@ const MapView = ({stations, coords, toggleFavorite}) => {
     <View style={styles.container}>
       <GoogleMapsView
         style={styles.map}
-        provider={GoogleMapsView.PROVIDER_GOOGLE}
-        region={{
+        //provider={GoogleMapsView.PROVIDER_GOOGLE} // TODO: initialRegion not working on ios with Google maps
+        initialRegion={{
           latitude: coords.latitude,
           longitude: coords.longitude,
-          latitudeDelta: 0.05,
-          longitudeDelta: 0.045,
+          latitudeDelta: 0.025,
+          longitudeDelta: 0.0225,
         }}
         showsUserLocation={true}
         loadingEnabled={true}
@@ -63,6 +63,8 @@ const MapView = ({stations, coords, toggleFavorite}) => {
         showsTraffic={false}
         showsIndoors={false}
         toolbarEnabled={false}
+        followsUserLocation={true}
+        zoomEnabled={true}
       >
         {stations.data.map(station => (
           <GoogleMapsView.Marker
