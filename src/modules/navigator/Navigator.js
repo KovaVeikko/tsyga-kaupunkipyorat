@@ -2,12 +2,14 @@ import React from 'react';
 import {TabNavigator, StackNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListScreen from '../list/ListScreen';
-import MapScreen from "../map/MapScreen";
+import MapScreen from '../map/MapScreen';
 import {
   DEFAULT_PRIMARY_COLOR,
   ICON_COLOR,
   LIGHT_PRIMARY_COLOR,
-} from "../../styles/colors"
+} from '../../styles/colors';
+import AboutScreen from '../about/AboutScreen';
+import AboutButton from './AboutButton';
 
 const headerColor = DEFAULT_PRIMARY_COLOR;
 const activeColor = ICON_COLOR;
@@ -18,6 +20,7 @@ const MainNavigator = TabNavigator({
     screen: ListScreen,
     navigationOptions: {
       tabBarIcon: ({tintColor}) => <Icon name='list' size={20} color={tintColor}/>,
+      headerTitle: AboutButton,
       headerStyle: {
         backgroundColor: headerColor,
         elevation: 3,
@@ -51,7 +54,15 @@ const MainNavigator = TabNavigator({
 const AppNavigator = StackNavigator({
   Main: {
     screen: MainNavigator
-  }
+  },
+  About: {
+    screen: AboutScreen,
+    navigationOptions: {
+      headerColor: ICON_COLOR,
+      headerStyle: {backgroundColor: headerColor},
+      headerTintColor: ICON_COLOR,
+    },
+  },
 });
 
 export default AppNavigator;
