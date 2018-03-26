@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {TEXT_SECONDARY_COLOR} from "../../styles/colors"
 const ABOUT_IMAGE = require('../../assets/img/about_icon.png');
 
 const AboutScreen = () => (
@@ -8,7 +9,7 @@ const AboutScreen = () => (
       <Image source={ABOUT_IMAGE} style={styles.icon} resizeMode='contain' />
     <View/>
     <View style={styles.footer}>
-      <Text>Veikko Kovanen, 2018</Text>
+      <Text style={styles.footerText}>Veikko Kovanen, 2018</Text>
     </View>
   </View>
 );
@@ -29,6 +30,9 @@ const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
     bottom: 20,
+  },
+  footerText: {
+    color: TEXT_SECONDARY_COLOR,
   }
 });
 

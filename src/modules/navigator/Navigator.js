@@ -31,6 +31,7 @@ const MainNavigator = TabNavigator({
     screen: MapScreen,
     navigationOptions: {
       tabBarIcon: ({tintColor}) => <Icon name='map' size={20} color={tintColor}/>,
+      headerTitle: AboutButton,
       headerStyle: {
         backgroundColor: headerColor,
         elevation: 3,
