@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, StyleSheet} from 'react-native';
-import {LIGHT_PRIMARY_COLOR} from "../../styles/colors"
+import {DIVIDER_COLOR, LIGHT_PRIMARY_COLOR} from "../../styles/colors"
 
 const MarkerCallout = ({station}) => {
   return (
     <View style={styles.container}>
       <View style={styles.body}>
         <View style={styles.nameContainer}>
-          <Text>{station.name}</Text>
+          <Text style={styles.text}>{station.name}</Text>
         </View>
         <View style={styles.statusContainer}>
-          <Text>{station.bikesAvailable}/{station.spacesAvailable + station.bikesAvailable}</Text>
+          <Text style={styles.text}>{station.bikesAvailable}/{station.spacesAvailable + station.bikesAvailable}</Text>
         </View>
       </View>
       <View style={styles.arrowContainer}>
@@ -27,10 +27,16 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: LIGHT_PRIMARY_COLOR,
-    padding: 10,
+    padding: 15,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderTopColor: DIVIDER_COLOR,
+    borderRightColor: DIVIDER_COLOR,
+    borderLeftColor: DIVIDER_COLOR,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
   },
   nameContainer: {
     alignItems: 'center',
@@ -51,6 +57,9 @@ const styles = StyleSheet.create({
     borderRightWidth: 13,
     borderBottomWidth: 0,
     borderLeftWidth: 13,
+  },
+  text: {
+    fontSize: 18,
   },
 });
 
