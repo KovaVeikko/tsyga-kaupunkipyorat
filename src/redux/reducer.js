@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 })
 
 export default reducer = (state, action) => {
-  return action.type === LOAD_SNAPSHOT
+  return action.type === LOAD_SNAPSHOT && action.snapshot
     ? rootReducer(action.snapshot, action)
     : rootReducer(state || void 0, action);
 }
