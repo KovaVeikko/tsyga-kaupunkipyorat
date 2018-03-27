@@ -9,7 +9,7 @@ const AboutScreen = () => (
       <Image source={ABOUT_IMAGE} style={styles.icon} resizeMode='contain' />
     <View/>
     <View style={styles.footer}>
-      <Text style={styles.footerText}>Veikko Kovanen, 2018</Text>
+      <Text style={styles.footerText}>Veikko Kovanen</Text>
     </View>
   </View>
 );
