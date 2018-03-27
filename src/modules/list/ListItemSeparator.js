@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ListItemSeparator
+export default ListItemSeparator;

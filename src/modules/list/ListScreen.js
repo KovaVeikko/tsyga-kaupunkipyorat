@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import ListItem from "./ListItem"
-import ListItemSeparator from "./ListItemSeparator"
-import {toggleFavorite} from "../AppState"
+import ListItemSeparator from './ListItemSeparator';
+import ListErrorMessage from './ListErrorMessage';
+import {toggleFavorite} from '../AppState';
 import {sortStationsByDistance, isFavorite, getStationDistance} from "../../utils/stationUtils";
 
-const sortdStations = (coords, stationsList, favorites) => {
+
+const sortStations = (coords, stationsList, favorites) => {
   const favoriteStations = sortStationsByDistance(coords, stationsList.filter(s => isFavorite(favorites, s)));
   const otherStations = sortStationsByDistance(coords, stationsList.filter(s => !isFavorite(favorites, s)));
   return [...favoriteStations, ...otherStations];
@@ -28,28 +30,31 @@ class ListScreen extends React.PureComponent {
   }
 
   render() {
-    const {dispatch, stations: {data, favorites}, location: {position, error}} = this.props;
-    const sortedStations = sortdStations(position.coords, data, favorites);
+    const {dispatch, stations: {data, favorites, error: stationsError}, location: {position, error: locationError}} = this.props;
+    const sortedStations = sortStations(position.coords, data, favorites);
     const visibleStations = sortedStations.slice(0, this.state.loadedStations);
     const renderItem = ({item}) => (
       <ListItem
         item={item}
         handlePress={() => dispatch(toggleFavorite({stationId: item.stationId}))}
         isFavorite={isFavorite(favorites, item)}
-        distance={error ? undefined : getStationDistance(position.coords, item)}
+        distance={locationError ? undefined : getStationDistance(position.coords, item)}
       />
     );
     const keyExtractor = item => item.stationId;
     return (
-      <FlatList
-        data={visibleStations}
-        extraData={[favorites]}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        ItemSeparatorComponent={ListItemSeparator}
-        onEndReached={this.loadMore}
-        onEndReachedThreshold={0.05}
-      />
+      <View>
+        {stationsError && <ListErrorMessage/>}
+        <FlatList
+          data={visibleStations}
+          extraData={[favorites]}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          ItemSeparatorComponent={ListItemSeparator}
+          onEndReached={this.loadMore}
+          onEndReachedThreshold={0.05}
+        />
+      </View>
     )
   }
 }

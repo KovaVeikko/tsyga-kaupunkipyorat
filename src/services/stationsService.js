@@ -12,7 +12,6 @@ const options = {
 
 
 export const fetchStationsData = () => new Promise((resolve, reject) => {
-  //reject(new Error("Test error"));
   return fetch(url, options)
     .then(response => {
       if (response.status !== 200) {

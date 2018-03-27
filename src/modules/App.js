@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StatusBar,
   ActivityIndicator,
+  AppState,
 } from 'react-native';
 import NavigatorContainer from './navigator/NavigatorContainer';
 import {DARK_PRIMARY_COLOR, ICON_COLOR} from '../styles/colors';
@@ -22,6 +23,16 @@ class App extends React.Component {
     });
     this.props.dispatch(getLocation());
     this.props.dispatch(fetchStations());
+
+    // Update data every 20 second
+    const interval = __DEV__ ? 60000 : 20000;
+    setInterval(() => {
+      if (AppState.currentState === 'active') {
+        this.props.dispatch(getLocation());
+        this.props.dispatch(fetchStations());
+      }
+    }, interval);
+
   }
 
   componentDidMount() {
