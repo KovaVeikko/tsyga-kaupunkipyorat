@@ -2,9 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {DEFAULT_PRIMARY_COLOR, TEXT_PRIMARY_COLOR, TEXT_SECONDARY_COLOR} from "../../styles/colors"
+import {
+  DEFAULT_PRIMARY_COLOR, EMPTY_COLOR, FULL_COLOR, OK_COLOR, TEXT_PRIMARY_COLOR,
+  TEXT_SECONDARY_COLOR
+} from "../../styles/colors"
 
 const ListItem = ({item, handlePress, isFavorite, distance}) => {
+  const getStatusColor = () => {
+    if (item.bikesAvailable === 0) {
+      return EMPTY_COLOR;
+    }
+    if (item.bikesAvailable === item.spacesAvailable) {
+      return FULL_COLOR;
+    }
+    return OK_COLOR;
+  }
   return (
       <View style={styles.container}>
         <View style={styles.left}>
@@ -21,7 +33,9 @@ const ListItem = ({item, handlePress, isFavorite, distance}) => {
           </View>
         </View>
         <View style={styles.right}>
-          <Text style={styles.statusText}>{item.bikesAvailable + '/' + (item.bikesAvailable + item.spacesAvailable)}</Text>
+          <View style={[styles.statusContainer, {borderRightColor: getStatusColor()}]}>
+            <Text style={styles.statusText}>{item.bikesAvailable + '/' + (item.bikesAvailable + item.spacesAvailable)}</Text>
+          </View>
         </View>
       </View>
   )
@@ -62,6 +76,10 @@ const styles = StyleSheet.create({
   nameText: {
     color: TEXT_PRIMARY_COLOR,
     fontSize: 18,
+  },
+  statusContainer: {
+    borderRightWidth: 10,
+    paddingRight: 10,
   },
   statusText: {
     fontSize: 18,
