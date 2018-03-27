@@ -97,6 +97,7 @@ export const AppReducer = (state = initialState, action) => {
           ...state.stations,
           loading: false,
           data: action.payload,
+          error: null,
         },
       }
     case STATIONS_RESPONSE_ERROR:
@@ -133,6 +134,7 @@ export const AppReducer = (state = initialState, action) => {
           ...state.location,
           loading: false,
           position: action.payload,
+          error: null,
         }
       }
     case LOCATION_RESPONSE_ERROR:

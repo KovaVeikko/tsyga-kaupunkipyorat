@@ -25,9 +25,11 @@ const ListItem = ({item, handlePress, isFavorite, distance}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.middle}>
+          {distance &&
           <View style={styles.distanceContainer}>
             <Text style={styles.distanceText}>{distance} km</Text>
           </View>
+          }
           <View>
             <Text style={styles.nameText}>{item.name}</Text>
           </View>
@@ -45,7 +47,7 @@ ListItem.propTypes = {
   item: PropTypes.object.isRequired,
   handlePress: PropTypes.func.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  distance: PropTypes.number.isRequired,
+  distance: PropTypes.number,
 }
 
 const styles = StyleSheet.create({

@@ -28,7 +28,7 @@ class ListScreen extends React.PureComponent {
   }
 
   render() {
-    const {dispatch, stations: {data, favorites}, location: {position}} = this.props;
+    const {dispatch, stations: {data, favorites}, location: {position, error}} = this.props;
     const sortedStations = sortdStations(position.coords, data, favorites);
     const visibleStations = sortedStations.slice(0, this.state.loadedStations);
     const renderItem = ({item}) => (
@@ -36,7 +36,7 @@ class ListScreen extends React.PureComponent {
         item={item}
         handlePress={() => dispatch(toggleFavorite({stationId: item.stationId}))}
         isFavorite={isFavorite(favorites, item)}
-        distance={getStationDistance(position.coords, item)}
+        distance={error ? undefined : getStationDistance(position.coords, item)}
       />
     );
     const keyExtractor = item => item.stationId;
