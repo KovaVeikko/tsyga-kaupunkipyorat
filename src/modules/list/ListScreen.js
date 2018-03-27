@@ -6,7 +6,7 @@ import ListItem from "./ListItem"
 import ListItemSeparator from './ListItemSeparator';
 import ListErrorMessage from './ListErrorMessage';
 import {toggleFavorite} from '../AppState';
-import {sortStationsByDistance, isFavorite, getStationDistance} from "../../utils/stationUtils";
+import {sortStationsByDistance, isFavorite, getStationDistance} from '../../utils/stationUtils';
 
 
 const sortStations = (coords, stationsList, favorites) => {
@@ -30,7 +30,18 @@ class ListScreen extends React.PureComponent {
   }
 
   render() {
-    const {dispatch, stations: {data, favorites, error: stationsError}, location: {position, error: locationError}} = this.props;
+    const {
+      dispatch,
+      stations: {
+        data,
+        favorites,
+        error: stationsError,
+      },
+      location: {
+        position,
+        error: locationError,
+      }
+    } = this.props;
     const sortedStations = sortStations(position.coords, data, favorites);
     const visibleStations = sortedStations.slice(0, this.state.loadedStations);
     const renderItem = ({item}) => (

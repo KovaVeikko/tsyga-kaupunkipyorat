@@ -25,7 +25,7 @@ class App extends React.Component {
     this.props.dispatch(fetchStations());
 
     // Update data every 20 second
-    const interval = __DEV__ ? 60000 : 20000;
+    const interval = __DEV__ ? 10000 : 20000;
     setInterval(() => {
       if (AppState.currentState === 'active') {
         this.props.dispatch(getLocation());
