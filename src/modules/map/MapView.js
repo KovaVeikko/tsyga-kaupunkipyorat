@@ -44,6 +44,11 @@ const MapView = ({stations, coords, toggleFavorite}) => {
     }
   }
 
+  const pressCallout = (stationId) => {
+    this["marker" + stationId].hideCallout();
+    toggleFavorite(stationId);
+  }
+
   return (
     <View style={styles.container}>
       <GoogleMapsView
@@ -74,10 +79,11 @@ const MapView = ({stations, coords, toggleFavorite}) => {
             coordinate={{latitude: station.lat, longitude: station.lon}}
             title={station.name}
             image={getMapPinImage(station)}
+            onCalloutPress={() => pressCallout(station.stationId)}
           >
             <GoogleMapsView.Callout
               tooltip={true}
-              onPress={() => toggleFavorite(station.stationId)}>
+            >
               <MarkerCallout station={station}/>
             </GoogleMapsView.Callout>
           </GoogleMapsView.Marker>
