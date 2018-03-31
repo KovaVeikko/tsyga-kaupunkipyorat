@@ -14,6 +14,7 @@ import store from '../redux/store';
 import {getSnapshot, saveSnapshot} from '../services/localStorageServices';
 import {loadSnapshot} from './session/SessionState';
 import SplashScreen from 'react-native-splash-screen';
+import LoadingScreen from './LoadingScreen';
 
 class App extends React.Component {
 
@@ -45,9 +46,7 @@ class App extends React.Component {
   render() {
     if (!this.props.session.isReady) {
       return (
-        <View style={styles.loadingScreen}>
-          <StatusBar backgroundColor={DARK_PRIMARY_COLOR} barStyle='light-content' />
-        </View>
+        <LoadingScreen/>
       )
     }
     return (
@@ -63,12 +62,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-  },
-  loadingScreen: {
-    backgroundColor: DARK_PRIMARY_COLOR,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
