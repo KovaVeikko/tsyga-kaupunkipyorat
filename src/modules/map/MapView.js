@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import GoogleMapsView from 'react-native-maps/lib/components/MapView';
 import MarkerCallout from './MarkerCallout';
 import {getStationStatus, isFavorite, STATION_EMPTY, STATION_FULL, STATION_OK} from "../../utils/stationUtils"
@@ -45,7 +45,6 @@ const MapView = ({stations, coords, toggleFavorite}) => {
   }
 
   const pressCallout = (stationId) => {
-    this["marker" + stationId].hideCallout();
     toggleFavorite(stationId);
   }
 
@@ -77,15 +76,17 @@ const MapView = ({stations, coords, toggleFavorite}) => {
             ref={node => this["marker" + station.stationId] = node}
             key={station.stationId}
             coordinate={{latitude: station.lat, longitude: station.lon}}
-            title={station.name}
+            title={station.name + " " + station.bikesAvailable + "/" + station.spacesAvailable}
             image={getMapPinImage(station)}
             onCalloutPress={() => pressCallout(station.stationId)}
           >
-            <GoogleMapsView.Callout
-              tooltip={true}
-            >
-              <MarkerCallout station={station}/>
-            </GoogleMapsView.Callout>
+            {Platform.OS !== 'ios' &&
+              <GoogleMapsView.Callout
+                tooltip={true}
+              >
+                <MarkerCallout station={station}/>
+              </GoogleMapsView.Callout>
+            }
           </GoogleMapsView.Marker>
         ))}
       </GoogleMapsView>
