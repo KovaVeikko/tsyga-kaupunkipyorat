@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import {TEXT_SECONDARY_COLOR} from "../../styles/colors"
+import {TEXT_PRIMARY_COLOR, TEXT_SECONDARY_COLOR} from "../../styles/colors"
 const ABOUT_IMAGE = require('../../assets/img/about_icon.png');
 
 const AboutScreen = () => (
@@ -13,6 +13,7 @@ const AboutScreen = () => (
     <View/>
     <View style={styles.footer}>
       <Text style={styles.footerText}>Veikko Kovanen</Text>
+      <Text style={[styles.footerText, {fontSize: 10}]}>Version 2.1.0</Text>
     </View>
   </View>
 );
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     top: 40,
   },
   headerText: {
+    color: TEXT_PRIMARY_COLOR,
     fontSize: 20,
   },
   iconContainer: {
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: TEXT_SECONDARY_COLOR,
+    textAlign: 'center',
   }
 });
 
