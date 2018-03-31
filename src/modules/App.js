@@ -5,11 +5,10 @@ import {
   View,
   StyleSheet,
   StatusBar,
-  ActivityIndicator,
   AppState,
 } from 'react-native';
 import NavigatorContainer from './navigator/NavigatorContainer';
-import {DARK_PRIMARY_COLOR, ICON_COLOR} from '../styles/colors';
+import {DARK_PRIMARY_COLOR} from '../styles/colors';
 import {fetchStations, getLocation} from './AppState';
 import store from '../redux/store';
 import {getSnapshot, saveSnapshot} from '../services/localStorageServices';
