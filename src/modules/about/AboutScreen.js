@@ -5,6 +5,9 @@ const ABOUT_IMAGE = require('../../assets/img/about_icon.png');
 
 const AboutScreen = () => (
   <View style={styles.container}>
+    <View style={styles.headerContainer}>
+      <Text style={styles.headerText}>Tsygä</Text>
+    </View>
     <View style={styles.iconContainer}/>
       <Image source={ABOUT_IMAGE} style={styles.icon} resizeMode='contain' />
     <View/>
@@ -21,11 +24,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerContainer: {
+    position: 'absolute',
+    top: 40,
+  },
+  headerText: {
+    fontSize: 20,
+  },
   iconContainer: {
     alignItems: 'center',
   },
   icon: {
-    width: '70%',
+    width: '60%',
   },
   footer: {
     position: 'absolute',
