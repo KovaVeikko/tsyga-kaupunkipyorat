@@ -16,6 +16,7 @@
 		06D9F26023594C63BEC22DAA /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBAA0FFE196F4D87BD9C2455 /* MaterialIcons.ttf */; };
 		09E87B085E6247609E362C5B /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF35663B10194C8FAFE9B074 /* SimpleLineIcons.ttf */; };
 		0AFC4338310F46398BF75CC2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E26C282F11C48FF87E3444D /* EvilIcons.ttf */; };
+		0C711EE2206F8E6500275E81 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C711EE1206F8E2D00275E81 /* libSplashScreen.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -157,6 +158,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
+		};
+		0C711EE0206F8E2D00275E81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C711EDC206F8E2D00275E81 /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -345,6 +353,7 @@
 		00E356EE1AD99517003FC87E /* TsygaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TsygaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* TsygaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TsygaTests.m; sourceTree = "<group>"; };
+		0C711EDC206F8E2D00275E81 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Tsyga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tsyga.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C711EE2206F8E6500275E81 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -511,6 +521,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0C711EDD206F8E2D00275E81 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C711EE1206F8E2D00275E81 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +616,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0C711EDC206F8E2D00275E81 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -858,6 +877,10 @@
 					ProductGroup = 0C36C7822065850500FA5C49 /* Products */;
 					ProjectRef = E04BA5A2A4474AAE99D23BF3 /* RNVectorIcons.xcodeproj */;
 				},
+				{
+					ProductGroup = 0C711EDD206F8E2D00275E81 /* Products */;
+					ProjectRef = 0C711EDC206F8E2D00275E81 /* SplashScreen.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -966,6 +989,13 @@
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 0C36C7852065850600FA5C49 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0C711EE1206F8E2D00275E81 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 0C711EE0206F8E2D00275E81 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
@@ -1388,6 +1418,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = Tsyga/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1411,6 +1442,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = Tsyga/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

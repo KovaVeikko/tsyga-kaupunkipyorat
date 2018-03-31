@@ -12,8 +12,9 @@ import NavigatorContainer from './navigator/NavigatorContainer';
 import {DARK_PRIMARY_COLOR, ICON_COLOR} from '../styles/colors';
 import {fetchStations, getLocation} from './AppState';
 import store from '../redux/store';
-import {getSnapshot, saveSnapshot} from "../services/localStorageServices";
-import {loadSnapshot} from "./session/SessionState"
+import {getSnapshot, saveSnapshot} from '../services/localStorageServices';
+import {loadSnapshot} from './session/SessionState';
+import SplashScreen from 'react-native-splash-screen';
 
 class App extends React.Component {
 
@@ -39,6 +40,7 @@ class App extends React.Component {
     store.subscribe(() => {
       saveSnapshot(store.getState());
     });
+    SplashScreen.hide();
   }
 
   render() {
@@ -46,7 +48,6 @@ class App extends React.Component {
       return (
         <View style={styles.loadingScreen}>
           <StatusBar backgroundColor={DARK_PRIMARY_COLOR} barStyle='light-content' />
-          <ActivityIndicator color={ICON_COLOR}/>
         </View>
       )
     }

@@ -28,10 +28,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="80l-IL-83F">
-                    <rect key="frame" x="177" y="323" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.27715510129928589" green="0.35150176286697388" blue="0.39487344026565552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <accessibility key="accessibilityConfiguration">
