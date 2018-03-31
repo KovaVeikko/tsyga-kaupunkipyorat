@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   statusText: {
+    color: TEXT_PRIMARY_COLOR,
     fontSize: 18,
   },
 });

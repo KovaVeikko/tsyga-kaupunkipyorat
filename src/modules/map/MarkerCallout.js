@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, StyleSheet} from 'react-native';
-import {DIVIDER_COLOR, LIGHT_PRIMARY_COLOR} from "../../styles/colors"
+import {DIVIDER_COLOR, LIGHT_PRIMARY_COLOR, TEXT_PRIMARY_COLOR} from "../../styles/colors"
 
 const MarkerCallout = ({station}) => {
   return (
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
+    color: TEXT_PRIMARY_COLOR,
   },
 });
 
