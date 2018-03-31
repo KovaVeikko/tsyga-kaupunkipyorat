@@ -101,7 +101,7 @@ android {
         applicationId "com.tsyga"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 30
+        versionCode 27
         versionName "2.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
