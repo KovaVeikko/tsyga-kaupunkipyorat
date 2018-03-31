@@ -27,7 +27,7 @@ const ListItem = ({item, handlePress, isFavorite, distance}) => {
         <View style={styles.middle}>
           {distance &&
           <View style={styles.distanceContainer}>
-            <Text style={styles.distanceText}>{distance} km</Text>
+            <Text style={styles.distanceText}>{distance.toFixed(1)} km</Text>
           </View>
           }
           <View>
