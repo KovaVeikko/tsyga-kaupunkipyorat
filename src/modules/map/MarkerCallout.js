@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderLeftWidth: 1,
+    elevation: 3,
   },
   nameContainer: {
     alignItems: 'center',

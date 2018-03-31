@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {View, StyleSheet, Platform} from 'react-native';
 import GoogleMapsView from 'react-native-maps/lib/components/MapView';
 import MarkerCallout from './MarkerCallout';
-import {getStationStatus, isFavorite, STATION_EMPTY, STATION_FULL, STATION_OK} from "../../utils/stationUtils"
-import {toggleFavorite} from "../AppState"
+import {getStationStatus, isFavorite, STATION_EMPTY, STATION_FULL, STATION_OK} from '../../utils/stationUtils';
+import {toggleFavorite} from '../AppState';
 
 const EMPTY_PIN = require('../../assets/img/map/rgrey.png');
 const OK_PIN = require('../../assets/img/map/rgreen.png');
@@ -71,6 +71,7 @@ const MapView = ({stations, coords, toggleFavorite}) => {
         zoomEnabled={true}
         showsScale={true}
         showsMyLocationButton={true}
+        zoomControlEnabled={true}
       >
         {stations.data.map(station => (
           <GoogleMapsView.Marker
