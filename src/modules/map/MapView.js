@@ -70,6 +70,7 @@ const MapView = ({stations, coords, toggleFavorite}) => {
         toolbarEnabled={false}
         zoomEnabled={true}
         showsScale={true}
+        showsMyLocationButton={true}
       >
         {stations.data.map(station => (
           <GoogleMapsView.Marker
