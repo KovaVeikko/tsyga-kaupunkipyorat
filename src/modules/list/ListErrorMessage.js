@@ -5,7 +5,7 @@ import {DIVIDER_COLOR, TEXT_PRIMARY_COLOR} from '../../styles/colors';
 const ListErrorMessage = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Loading stations failed</Text>
+      <Text style={styles.text}>Updating data failed.</Text>
     </View>
   )
 };
