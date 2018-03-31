@@ -5,6 +5,7 @@ import {FlatList, View} from 'react-native';
 import ListItem from "./ListItem"
 import ListItemSeparator from './ListItemSeparator';
 import ListErrorMessage from './ListErrorMessage';
+import ScrollUpButton from './ScrollUpButton';
 import {toggleFavorite} from '../AppState';
 import {sortStationsByDistance, isFavorite, getStationDistance, sortStationsByName} from '../../utils/stationUtils';
 
@@ -36,6 +37,10 @@ class ListScreen extends React.PureComponent {
     }
   }
 
+  scrollUp = () => {
+    this.list.scrollToIndex({index: 0});
+  }
+
   render() {
     const {
       dispatch,
@@ -65,6 +70,7 @@ class ListScreen extends React.PureComponent {
       <View>
         {stationsError && <ListErrorMessage/>}
         <FlatList
+          ref={node => this.list = node}
           data={visibleStations}
           extraData={[favorites]}
           renderItem={renderItem}
@@ -73,6 +79,7 @@ class ListScreen extends React.PureComponent {
           onEndReached={this.loadMore}
           onEndReachedThreshold={0.05}
         />
+        <ScrollUpButton onPress={this.scrollUp}/>
       </View>
     )
   }
