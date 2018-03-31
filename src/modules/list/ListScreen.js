@@ -28,6 +28,7 @@ class ListScreen extends React.PureComponent {
     super(props);
     this.state = {
       loadedStations: 20,
+      showScrollButton: false,
     }
   }
 
@@ -39,6 +40,15 @@ class ListScreen extends React.PureComponent {
 
   scrollUp = () => {
     this.list.scrollToIndex({index: 0});
+  }
+
+  handleScroll = (e) => {
+    const y = e.nativeEvent.contentOffset.y;
+    if (y > 500 && !this.state.showScrollButton) {
+      this.setState({showScrollButton: true});
+    } else if (y <= 500 && this.state.showScrollButton) {
+      this.setState({showScrollButton: false});
+    }
   }
 
   render() {
@@ -71,6 +81,7 @@ class ListScreen extends React.PureComponent {
         {stationsError && <ListErrorMessage/>}
         <FlatList
           ref={node => this.list = node}
+          onScroll={this.handleScroll}
           data={visibleStations}
           extraData={[favorites]}
           renderItem={renderItem}
@@ -79,7 +90,9 @@ class ListScreen extends React.PureComponent {
           onEndReached={this.loadMore}
           onEndReachedThreshold={0.05}
         />
+        {this.state.showScrollButton &&
         <ScrollUpButton onPress={this.scrollUp}/>
+        }
       </View>
     )
   }
