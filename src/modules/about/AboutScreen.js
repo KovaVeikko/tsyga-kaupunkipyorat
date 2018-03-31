@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: '60%',
+    maxWidth: 250,
   },
   footer: {
     position: 'absolute',

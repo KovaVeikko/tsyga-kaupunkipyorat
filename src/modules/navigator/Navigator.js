@@ -21,7 +21,7 @@ const MainNavigator = TabNavigator({
     screen: ListScreen,
     navigationOptions: {
       tabBarIcon: ({tintColor}) => <Icon name='list' size={20} color={tintColor}/>,
-      headerTitle: AboutButton,
+      headerLeft: <AboutButton/>,
       headerStyle: {
         backgroundColor: headerColor,
         elevation: 3,
@@ -33,7 +33,7 @@ const MainNavigator = TabNavigator({
     screen: MapScreen,
     navigationOptions: {
       tabBarIcon: ({tintColor}) => <Icon name='map' size={20} color={tintColor}/>,
-      headerTitle: AboutButton,
+      headerLeft: <AboutButton/>,
       headerStyle: {
         backgroundColor: headerColor,
         elevation: 3,
