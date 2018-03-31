@@ -22,18 +22,18 @@ const initialState = {
 }
 
 const STATIONS_REQUEST = 'STATIONS_REQUEST';
-const stationsRequest = () => ({
+export const stationsRequest = () => ({
   type: STATIONS_REQUEST,
 });
 
 const STATIONS_RESPONSE_SUCCESS = 'STATIONS_RESPONSE_SUCCESS';
-const stationsResponseSuccess = ({payload}) => ({
+export const stationsResponseSuccess = ({payload}) => ({
   type: STATIONS_RESPONSE_SUCCESS,
   payload,
 });
 
 const STATIONS_RESPONSE_ERROR = 'STATIONS_RESPONSE_ERROR';
-const stationsResponseError = ({error}) => ({
+export const stationsResponseError = ({error}) => ({
   type: STATIONS_RESPONSE_ERROR,
   error,
 });

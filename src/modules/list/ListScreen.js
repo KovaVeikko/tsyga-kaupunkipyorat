@@ -6,8 +6,9 @@ import ListItem from "./ListItem"
 import ListItemSeparator from './ListItemSeparator';
 import ListErrorMessage from './ListErrorMessage';
 import ScrollUpButton from './ScrollUpButton';
-import {toggleFavorite} from '../AppState';
+import {stationsRequest, stationsResponseError, stationsResponseSuccess, toggleFavorite} from '../AppState';
 import {sortStationsByDistance, isFavorite, getStationDistance, sortStationsByName} from '../../utils/stationUtils';
+import {fetchStationsData} from '../../services/stationsService';
 
 
 const sortStations = (coords, stationsList, favorites, orderByName) => {
@@ -29,6 +30,7 @@ class ListScreen extends React.PureComponent {
     this.state = {
       loadedStations: 20,
       showScrollButton: false,
+      refreshing: false,
     }
   }
 
@@ -48,6 +50,19 @@ class ListScreen extends React.PureComponent {
       this.setState({showScrollButton: true});
     } else if (y <= 500 && this.state.showScrollButton) {
       this.setState({showScrollButton: false});
+    }
+  }
+
+  handleRefresh = async () => {
+    this.setState({refreshing: true});
+    this.props.dispatch(stationsRequest());
+    try {
+      const stationsData = await fetchStationsData();
+      this.props.dispatch(stationsResponseSuccess({payload: stationsData}));
+    } catch (err) {
+      this.props.dispatch(stationsResponseError({error: err}));
+    } finally {
+      this.setState({refreshing: false});
     }
   }
 
@@ -89,6 +104,8 @@ class ListScreen extends React.PureComponent {
           ItemSeparatorComponent={ListItemSeparator}
           onEndReached={this.loadMore}
           onEndReachedThreshold={0.05}
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh}
         />
         {this.state.showScrollButton &&
         <ScrollUpButton onPress={this.scrollUp}/>
