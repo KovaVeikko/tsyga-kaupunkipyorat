@@ -7,6 +7,7 @@ const initialState = {
     loading: false,
     error: null,
     favorites: [],
+    sorted: false,
   },
   location: {
     position: {
@@ -41,6 +42,11 @@ const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 export const toggleFavorite = ({stationId}) => ({
   type: TOGGLE_FAVORITE,
   stationId,
+});
+
+const TOGGLE_SORTED = 'TOGGLE_SORTED';
+export const toggleSorted = () => ({
+  type: TOGGLE_SORTED,
 });
 
 const LOCATION_REQUEST = 'LOCATION_REQUEST';
@@ -117,6 +123,14 @@ export const AppReducer = (state = initialState, action) => {
           favorites: state.stations.favorites.includes(action.stationId)
             ? state.stations.favorites.filter(id => id !== action.stationId)
             : [...state.stations.favorites, action.stationId],
+        }
+      }
+    case TOGGLE_SORTED:
+      return {
+        ...state,
+        stations: {
+          ...state.stations,
+          sorted: !state.stations.sorted,
         }
       }
     case LOCATION_REQUEST:

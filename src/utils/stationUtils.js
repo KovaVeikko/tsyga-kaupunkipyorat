@@ -25,3 +25,9 @@ export const sortStationsByDistance = (coords, stationsList) => {
     return getStationDistance(coords, left) > getStationDistance(coords, right) ? 1 : -1;
   });
 }
+
+export const sortStationsByName = (stationsList) => {
+  return stationsList.sort((left, right) => {
+    return left.name > right.name ? 1 : -1;
+  });
+}

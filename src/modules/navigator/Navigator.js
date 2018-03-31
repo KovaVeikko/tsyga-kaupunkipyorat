@@ -3,6 +3,7 @@ import {TabNavigator, StackNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListScreen from '../list/ListScreen';
 import MapScreen from '../map/MapScreen';
+import OrderingButton from './OrderingButton';
 import {
   DEFAULT_PRIMARY_COLOR,
   ICON_COLOR,
@@ -24,7 +25,8 @@ const MainNavigator = TabNavigator({
       headerStyle: {
         backgroundColor: headerColor,
         elevation: 3,
-      }
+      },
+      headerRight: <OrderingButton/>,
     },
   },
   Map: {
