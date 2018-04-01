@@ -12,7 +12,7 @@ const ListItem = ({item, handlePress, isFavorite, distance}) => {
     if (item.bikesAvailable === 0) {
       return EMPTY_COLOR;
     }
-    if (item.bikesAvailable === item.spacesAvailable) {
+    if (item.spacesAvailable === 0) {
       return FULL_COLOR;
     }
     return OK_COLOR;

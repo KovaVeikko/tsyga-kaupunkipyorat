@@ -78,7 +78,7 @@ const MapView = ({stations, coords, toggleFavorite}) => {
             ref={node => this["marker" + station.stationId] = node}
             key={station.stationId}
             coordinate={{latitude: station.lat, longitude: station.lon}}
-            title={station.name + " " + station.bikesAvailable + "/" + station.spacesAvailable}
+            title={station.name + " " + station.bikesAvailable + "/" + (station.bikesAvailable + station.spacesAvailable)}
             image={getMapPinImage(station)}
             onCalloutPress={() => pressCallout(station.stationId)}
           >
