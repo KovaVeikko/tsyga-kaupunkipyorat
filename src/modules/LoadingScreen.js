@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '60%',
-    maxWidth: 200,
+    maxWidth: 160,
   },
 });
 
