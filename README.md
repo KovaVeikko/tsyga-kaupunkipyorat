@@ -8,12 +8,12 @@ distances to the stations, both on a list and on a map.
 
 <div style="display:flex;align-items:center;justify-content:center">
   <img src="./previews/android_list.png"
-       width="24%" height="auto" style="margin:5px;"/>
+       width="23%" height="auto" style="margin:5px;"/>
   <img src="./previews/android_map.png"
-       width="24%" height="auto" style="margin:5px;"/>
+       width="23%" height="auto" style="margin:5px;"/>
 
   <img src="./previews/ios_list.png"
-      width="24%" height="auto" style="margin:5px;"/>
+      width="23%" height="auto" style="margin:5px;"/>
   <img src="./previews/ios_map.png"
-      width="24%" height="auto" style="margin:5px;"/>
+      width="23%" height="auto" style="margin:5px;"/>
 </div>
