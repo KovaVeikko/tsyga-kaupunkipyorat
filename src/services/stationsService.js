@@ -19,7 +19,12 @@ export const fetchStationsData = () => new Promise((resolve, reject) => {
       } else {
       response.json()
         .then(json => {
-          resolve(json.data.bikeRentalStations)
+          const stations = json.data.bikeRentalStations;
+          if (stations && stations.length) {
+            resolve(stations);
+          } else {
+            reject(new Error("Unexpected format, of type: " + typeof stations));
+          }
         })
         .catch(error => {
           reject(error)
