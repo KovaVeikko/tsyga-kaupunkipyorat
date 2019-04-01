@@ -100,9 +100,9 @@ android {
     defaultConfig {
         applicationId "com.tsyga"
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 28
-        versionName "2.1.0"
+        targetSdkVersion 26
+        versionCode 29
+        versionName "2.2.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
