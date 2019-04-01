@@ -3,8 +3,12 @@ import {getDistanceFromLatLonInKm} from "./locationUtils"
 export const STATION_EMPTY = 'EMPTY';
 export const STATION_OK = 'OK';
 export const STATION_FULL = 'FULL';
+export const STATION_DISABLED = 'DISABLED';
 
 export const getStationStatus = (station) => {
+  if (station.spacesAvailable === 0 && station.bikesAvailable === 0) {
+    return STATION_DISABLED;
+  }
   if (station.bikesAvailable === 0) {
     return STATION_EMPTY;
   }
