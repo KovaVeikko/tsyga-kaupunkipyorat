@@ -21,9 +21,7 @@ export const fetchStationsData = () => new Promise((resolve, reject) => {
         .then(json => {
           const stations = json.data.bikeRentalStations;
           if (stations && stations.length) {
-            // TODO: show disabled stations with a different icon on the map
-            const notDisabledStations = stations.filter(f => (f.bikesAvailable && f.spacesAvailable) && (f.bikesAvailable > 0 || f.spacesAvailable > 0));
-            resolve(notDisabledStations);
+            resolve(stations);
           } else {
             reject(new Error("Unexpected format, of type: " + typeof stations));
           }

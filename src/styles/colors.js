@@ -8,5 +8,7 @@ export const TEXT_SECONDARY_COLOR = '#757575';
 export const DIVIDER_COLOR = '#DDDDDD';
 
 export const EMPTY_COLOR = 'rgba(211,211,211,1)';
-export const FULL_COLOR = 'rgba(244,164,96,1)';
+export const FULL_COLOR = '#54DD92';
+export const FULL_COLOR_MARKER = 'rgba(130,187,141,1)';
 export const OK_COLOR = '#54DD92';
+export const OK_COLOR_MARKER = 'rgba(130,187,141,1)';

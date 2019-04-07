@@ -23,7 +23,7 @@ const MarkerCallout = ({station}) => {
 
 const styles = StyleSheet.create({
   container: {
-
+    width: 160,
   },
   body: {
     backgroundColor: LIGHT_PRIMARY_COLOR,
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: TEXT_PRIMARY_COLOR,
+    textAlign: 'center',
   },
 });
 
