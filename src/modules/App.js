@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StatusBar,
   AppState,
+  Platform,
 } from 'react-native';
 import NavigatorContainer from './navigator/NavigatorContainer';
 import {DARK_PRIMARY_COLOR} from '../styles/colors';
@@ -13,8 +14,8 @@ import {fetchStations, getLocation} from './AppState';
 import store from '../redux/store';
 import {getSnapshot, saveSnapshot} from '../services/localStorageServices';
 import {loadSnapshot} from './session/SessionState';
-import SplashScreen from 'react-native-splash-screen';
 import LoadingScreen from './LoadingScreen';
+import SplashScreen from 'react-native-splash-screen';
 
 class App extends React.Component {
 
@@ -40,7 +41,9 @@ class App extends React.Component {
     store.subscribe(() => {
       saveSnapshot(store.getState());
     });
-    SplashScreen.hide();
+    if (Platform.OS !== 'ios') {
+      SplashScreen.hide();
+    }
   }
 
   render() {

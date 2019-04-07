@@ -60,21 +60,21 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   React:
-    :path: "../node_modules/react-native"
+    :path: ../node_modules/react-native
   react-native-google-maps:
-    :path: "../node_modules/react-native-maps"
+    :path: ../node_modules/react-native-maps
   react-native-maps:
-    :path: "../node_modules/react-native-maps"
+    :path: ../node_modules/react-native-maps
   yoga:
-    :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
+    :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
 SPEC CHECKSUMS:
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
-  React: 87cb66e255b02cae031f82a5d3e7c70c639957fc
-  react-native-google-maps: 74a81c3aa24f2095fe8c8d27cb80b2b3808a5bc3
-  react-native-maps: 6ab4fa4f78e88824ec300de0eb412f0556b6a84b
-  yoga: de5853128c499decde39904270f22f75d36d7668
+  React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
+  react-native-google-maps: 963fc78a5ac32dad3a726e4fa08b5307faa5cab2
+  react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: aa19a312eca7c184d3ca16075e92d000108e640a
+PODFILE CHECKSUM: 28527ebf7f696ac989849974dd0cfe5ce32dd5ab
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0
